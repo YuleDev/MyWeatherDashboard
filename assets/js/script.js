@@ -1,18 +1,28 @@
 var searchbarEl = document.getElementById("searchBtn");
-var innerSearchText = searchbarEl.previousElementSibling.innerHTML;
+var innerSearchText = document.getElementById("searchfield").value;
 var newCity = innerSearchText.value;
 
-searchbarEl.addEventListener("click", searchTextFetch);
+searchbarEl.addEventListener("click", formSubmitHandler);
 
 var formSubmitHandler = function (event) {
+	var searchbarEl = document.getElementById("searchBtn");
+	var innerSearchText = document.getElementById("searchfield").value;
+	var newCity = innerSearchText.value;
+
     event.preventDefault();
 
     var searchedCity = newCity.trim();
     var cityName = searchedCity.toLowerCase();
 
-    if (cityName) {
-        typedWeatherData(cityName);
+    if (!cityName) {
+		return;
+        /* typedWeatherData(cityName); */
     }
+
+/* 	e.preventDefault();
+  var search = */ // get the value of the text in the search bar input field in your html
+  //call the function that fetches the weather
+  //set the value of the search box text input to an empty string
 };
 
 /* look at search button
