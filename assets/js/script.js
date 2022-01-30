@@ -1,4 +1,23 @@
-fetch("https://api.openweathermap.org/data/2.5/weather?q=denver&appid=6896502a9c81dd1ca7e7e719e1d786a0")
+var searchbarEl = document.querySelector("#searchfield");
+
+var formSubmitHandler = function (event) {
+    event.preventDefault();
+
+    var searchedCity = searchbarEl.value.trim();
+    var cityName = searchedCity.toLowerCase();
+
+    if (cityName) {
+        typedWeatherData(cityName);
+    }
+};
+
+
+
+var typedWeatherData = function (cityName) {
+
+var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=6896502a9c81dd1ca7e7e719e1d786a0";
+
+fetch(apiUrl)
 .then(function (response) {
 	if (response.ok) {
 		return response.json();
@@ -20,7 +39,7 @@ function render(data) {
 	for(i=1; i<=5; i++){
 		var forDay = "#day" + [i];
         var dayElement = document.querySelector(forDay);
-        dayElement.innerHTML =/*  i + 1 + */ "daily temperature: " + data.daily[i].temp.day;
+        dayElement.innerHTML = "daily temperature: " + data.daily[i].temp.day;
 		const listwind = document.createElement("li");
 		const listhumid = document.createElement("li");
 		let weatherIcon = document.createElement("img");
@@ -28,10 +47,8 @@ function render(data) {
 		dayElement.appendChild(weatherIcon).textContent = data.daily[i].weather[0].icon;
 		dayElement.appendChild(listwind).textContent = "wind speed " + data.daily[i].wind_speed + " miles per hour";
 		dayElement.appendChild(listhumid).textContent = "humidty: " + data.daily[i].humidity + " wetness per air";
-
-		
-		console.log(data.daily[i].temp.day)
 	}
+};
 };
 
 
