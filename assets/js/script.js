@@ -1,15 +1,24 @@
-var searchbarEl = document.querySelector("#searchfield");
+var searchbarEl = document.getElementById("searchBtn");
+var innerSearchText = searchbarEl.previousElementSibling.innerHTML;
+var newCity = innerSearchText.value;
+
+searchbarEl.addEventListener("click", searchTextFetch);
 
 var formSubmitHandler = function (event) {
     event.preventDefault();
 
-    var searchedCity = searchbarEl.value.trim();
+    var searchedCity = newCity.trim();
     var cityName = searchedCity.toLowerCase();
 
     if (cityName) {
         typedWeatherData(cityName);
     }
 };
+
+/* look at search button
+when search button is clicked look at previous element "textarea"
+take value of text area and pass it into cityName
+run fetch request with new variable of searched city */
 
 
 
