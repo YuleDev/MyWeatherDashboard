@@ -1,11 +1,12 @@
 var searchbarEl = document.getElementById("searchBtn");
 var innerSearchText = document.getElementById("searchfield").value;
-/* var newCity = innerSearchText.value; */
 
 var getNewCity = function() {
 	event.preventDefault();
 	var innerSearchText = document.getElementById("searchfield").value;
 	console.log(innerSearchText);
+	typedWeatherData(innerSearchText);
+	localStorage.setItem("city", innerSearchText);
 }
 
 searchbarEl.addEventListener("click", getNewCity);
@@ -33,65 +34,28 @@ var typedWeatherData = function (innerSearchText) {
 		for (i = 1; i <= 5; i++) {
 			var forDay = "#day" + [i];
 			var dayElement = document.querySelector(forDay);
-			dayElement.innerHTML = "daily temperature: " + data.daily[i].temp.day;
 			const listwind = document.createElement("li");
 			const listhumid = document.createElement("li");
 			let weatherIcon = document.createElement("img");
-
-			dayElement.appendChild(weatherIcon).textContent = data.daily[i].weather[0].icon;
+			let uviDisplay = document.createElement("li");
+			var iconCode = data.daily[i].weather[0].icon;
+			
+			dayElement.innerHTML = "daily temperature: " + data.daily[i].temp.day;
+			dayElement.appendChild(weatherIcon).src = "http://openweathermap.org/img/w/" + iconCode + ".png";
 			dayElement.appendChild(listwind).textContent = "wind speed " + data.daily[i].wind_speed + " miles per hour";
 			dayElement.appendChild(listhumid).textContent = "humidty: " + data.daily[i].humidity + " wetness per air";
+			dayElement.appendChild(uviDisplay).textContent = "UVI: " + data.daily[i].uvi + " sunlight per UV";
 		}
 	};
 };
 
-
-	/* previously used code that could become helpful */
-
-/* var formSubmitHandler = function (event) {
-	var searchbarEl = document.getElementById("searchBtn");
-	var innerSearchText = document.getElementById("searchfield").value;
-	var newCity = innerSearchText.value;
-
-	event.preventDefault();
-
-	var searchedCity = newCity.trim();
-	var cityName = searchedCity.toLowerCase();
-
-	if (!cityName) {
-		return;
-		/* typedWeatherData(cityName);
-	}
-
-	e.preventDefault();
-  var search =  // get the value of the text in the search bar input field in your html
-  //call the function that fetches the weather
-  //set the value of the search box text input to an empty string
+function displayOldSearch() { 
+var unorderedListEl = document.querySelector("#weatherlist");
+var cityListEl = document.createElement("li");
+var searchedCities = localStorage.getItem("city");
+			
+unorderedListEl.appendChild(cityListEl);
+cityListEl.textContent(searchedCities.value);
 };
 
- look at search button
-when search button is clicked look at previous element "textarea"
-take value of text area and pass it into cityName
-run fetch request with new variable of searched city */
-
-
-
-/* var userSearch = document.querySelector("#searchfield").value;
-
-
-/* search weather data fetch */
-/* var fetchSearch = function () {
-	fetch("https://community-open-weather-map.p.rapidapi.com/find?q=london&cnt=0&mode=null&lon=0&type=link%2C%20accurate&lat=0&units=imperial%2C%20metric", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-		"x-rapidapi-key": "f112fe985emsh7fd3ffcf23a79fbp14c66djsnd4ab259a0c95"
-	}
-})
-.then(response => {
-	console.log(response);
-})
-.catch(err => {
-	console.error(err);
-});
-}; */
+displayOldSearch();
