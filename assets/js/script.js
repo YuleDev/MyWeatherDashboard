@@ -23,7 +23,6 @@ var typedWeatherData = function (innerSearchText) {
 			fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&units=imperial&appid=6896502a9c81dd1ca7e7e719e1d786a0`)
 				.then(response => response.json())
 				.then(dataOneCall => {
-					/* console.log(dataOneCall) */
 					render(dataOneCall)
 				})
 		});
@@ -41,10 +40,10 @@ var typedWeatherData = function (innerSearchText) {
 			var iconCode = data.daily[i].weather[0].icon;
 			
 			dayElement.innerHTML = "daily temperature: " + data.daily[i].temp.day;
-			dayElement.appendChild(weatherIcon).src = "http://openweathermap.org/img/w/" + iconCode + ".png";
 			dayElement.appendChild(listwind).textContent = "wind speed " + data.daily[i].wind_speed + " miles per hour";
 			dayElement.appendChild(listhumid).textContent = "humidty: " + data.daily[i].humidity + " wetness per air";
 			dayElement.appendChild(uviDisplay).textContent = "UVI: " + data.daily[i].uvi + " sunlight per UV";
+			dayElement.appendChild(weatherIcon).src = "http://openweathermap.org/img/w/" + iconCode + ".png";
 		}
 	};
 };
@@ -55,7 +54,10 @@ var cityListEl = document.createElement("li");
 var searchedCities = localStorage.getItem("city");
 			
 unorderedListEl.appendChild(cityListEl);
-cityListEl.textContent(searchedCities.value);
+cityListEl.innerHTML = searchedCities;
+
+cityListEl.addEventListener("click", typedWeatherData(cityListEl.innerHTML))
+
 };
 
 displayOldSearch();
