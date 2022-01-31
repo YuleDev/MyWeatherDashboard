@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,19 +8,31 @@
     <title>Weather-Dashboard</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-    <div class="navLike"><h1>Weather Dashboard (I know its ugly)</h1></div>
 
-    <div id="searchArea"> Search for a city:
+<body>
+    <div class="navLike">
+        <h1>Weather Dashboard (I know its ugly)</h1>
+    </div>
+
+    <div id="searchArea">
+        <h1>Search for a city:</h1>
         <form class="srchBtn">
-        <input type="text" placeholder="search..." name="search" id="searchfield">
-        <button id="searchBtn" type="submit">submit</i></button>
+            <input type="text" placeholder="search..." name="search" id="searchfield">
+            <button id="searchBtn" type="submit">submit</i></button>
         </form>
     </div>
+
     <div id="searchlist">
+
         <h2 id="weatherhistory">Weather History</h2>
         <ul id="weatherlist"></ul>
+
+        <div id="currentDayDisplay">
+            <h2 id="currentday">Current day</h2>
+        </div>
+
     </div>
+
     <div id="fivedayforecast">
         <div class="placeholderDay" id="day1"></div>
         <div class="placeholderDay" id="day2"></div>
@@ -27,7 +40,8 @@
         <div class="placeholderDay" id="day4"></div>
         <div class="placeholderDay" id="day5"></div>
     </div>
-    
+
 </body>
 <script src="assets/js/script.js"></script>
+
 </html>
