@@ -1,9 +1,12 @@
 # MyWeatherDashboard
 
+## description
 This is a web application for being able to see the various weather reports.
 
+## repo url
 https://github.com/BullMooseDev/MyWeatherDashboard
 
+## deployed url
 https://bullmoosedev.github.io/MyWeatherDashboard/
 
 GIVEN a weather dashboard with form inputs
