@@ -23,7 +23,6 @@ displayOldSearch();
 var getNewCity = function () {
 	event.preventDefault();
 	var innerSearchText = document.getElementById("searchfield").value;
-	console.log(innerSearchText);
 	typedWeatherData(innerSearchText);
 	innerSearchText = innerSearchText.toLowerCase().trim()
 	if (!savedCities.includes(innerSearchText)) {
