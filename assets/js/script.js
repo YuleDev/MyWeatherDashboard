@@ -83,8 +83,32 @@ var typedWeatherData = function (buttonContent) {
 				.then(response => response.json())
 				.then(dataOneCall => {
 					render(dataOneCall)
+					CurrentDay(dataOneCall);
+					console.log(dataOneCall);
 				})
 		});
+
+	function CurrentDay(data) {
+			var currentDayDisplay = document.querySelector("#currentDayDisplay");
+
+			var currTemp = data.current.temp;
+			var currUvi = data.current.uvi;
+			var currHumidity = data.current.humidity;
+			var currIcon = data.current.weather[0].icon;
+			var currWind = data.current.wind_speed;
+
+			var currIconEl = document.createElement("img");
+			var currTempEl = document.createElement("li");
+			var currUviEl = document.createElement("li");
+			var currHumidityEl = document.createElement("li");
+			var currWindEl = document.createElement("li");
+
+			currentDayDisplay.appendChild(currTempEl).textContent = currTemp + " degrees";
+			currentDayDisplay.appendChild(currUviEl).textContent = currUvi + " UV per UVI";
+			currentDayDisplay.appendChild(currHumidityEl).textContent = currHumidity + " wetness per air";
+			currentDayDisplay.appendChild(currWindEl).textContent = currWind + " wind per windiness";
+			currentDayDisplay.appendChild(currIconEl).src = "http://openweathermap.org/img/w/" +  currIcon + ".png";
+	}
 
 	function render(data) {
 
