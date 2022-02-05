@@ -90,18 +90,35 @@ var typedWeatherData = function (buttonContent) {
 
 	function CurrentDay(data) {
 			var currentDayDisplay = document.querySelector("#currentDayDisplay");
-
+			currentDayDisplay.innerHTML = "";
 			var currTemp = data.current.temp;
 			var currUvi = data.current.uvi;
 			var currHumidity = data.current.humidity;
 			var currIcon = data.current.weather[0].icon;
 			var currWind = data.current.wind_speed;
 
+			
 			var currIconEl = document.createElement("img");
 			var currTempEl = document.createElement("li");
 			var currUviEl = document.createElement("li");
 			var currHumidityEl = document.createElement("li");
 			var currWindEl = document.createElement("li");
+			
+			if (data.current.uvi < 3) {
+				currUviEl.classList.add("greenUV");
+			}
+			if (data.current.uvi > 2) {
+				currUviEl.classList.add("yellowUV");
+			}
+			if (data.current.uvi > 6) {
+				currUviEl.classList.add("orangeUV");
+			}
+			if (data.current.uvi > 7) {
+				currUviEl.classList.add("redUV");
+			}
+			if (data.current.uvi > 10) {
+				currUviEl.classList.add("purpleUV");
+			};
 
 			currentDayDisplay.appendChild(currTempEl).textContent = currTemp + " degrees";
 			currentDayDisplay.appendChild(currUviEl).textContent = currUvi + " UV per UVI";
@@ -121,11 +138,28 @@ var typedWeatherData = function (buttonContent) {
 			let uviDisplay = document.createElement("li");
 			var iconCode = data.daily[i].weather[0].icon;
 
+			
 			dayElement.innerHTML = "daily temperature: " + data.daily[i].temp.day;
 			dayElement.appendChild(listwind).textContent = "wind speed " + data.daily[i].wind_speed + " miles per hour";
 			dayElement.appendChild(listhumid).textContent = "humidty: " + data.daily[i].humidity + " wetness per air";
 			dayElement.appendChild(uviDisplay).textContent = "UVI: " + data.daily[i].uvi + " sunlight per UV";
 			dayElement.appendChild(weatherIcon).src = "http://openweathermap.org/img/w/" + iconCode + ".png";
+			
+			if (data.current.uvi < 3) {
+				uviDisplay.classList.add("greenUV");
+			}
+			if (data.current.uvi > 2) {
+				uviDisplay.classList.add("yellowUV");
+			}
+			if (data.current.uvi > 6) {
+				uviDisplay.classList.add("orangeUV");
+			}
+			if (data.current.uvi > 7) {
+				uviDisplay.classList.add("redUV");
+			}
+			if (data.current.uvi > 10) {
+				uviDisplay.classList.add("purpleUV");
+			};
 		}
 	};
 };
