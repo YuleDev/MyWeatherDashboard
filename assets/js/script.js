@@ -60,7 +60,10 @@ var typedWeatherData = function (innerSearchText) {
 			let weatherIcon = document.createElement("img");
 			let uviDisplay = document.createElement("li");
 			var iconCode = data.daily[i].weather[0].icon;
+			var cityCounty = data.timezone;
+			var cityCountyEl = document.createElement("li");
 
+			dayElement.appendChild(cityCountyEl).textContent = cityCounty;
 			dayElement.innerHTML = "daily temperature: " + data.daily[i].temp.day;
 			dayElement.appendChild(listwind).textContent = "wind speed " + data.daily[i].wind_speed + " miles per hour";
 			dayElement.appendChild(listhumid).textContent = "humidty: " + data.daily[i].humidity + " wetness per air";
@@ -96,8 +99,9 @@ var typedWeatherData = function (buttonContent) {
 			var currHumidity = data.current.humidity;
 			var currIcon = data.current.weather[0].icon;
 			var currWind = data.current.wind_speed;
+			var cityDataName = data.timezone;
 
-			
+			var cityNameEl = document.createElement("li");
 			var currIconEl = document.createElement("img");
 			var currTempEl = document.createElement("li");
 			var currUviEl = document.createElement("li");
@@ -120,6 +124,7 @@ var typedWeatherData = function (buttonContent) {
 				currUviEl.classList.add("purpleUV");
 			};
 
+			currentDayDisplay.appendChild(cityNameEl).textContent = cityDataName;
 			currentDayDisplay.appendChild(currTempEl).textContent = currTemp + " degrees";
 			currentDayDisplay.appendChild(currUviEl).textContent = currUvi + " UV per UVI";
 			currentDayDisplay.appendChild(currHumidityEl).textContent = currHumidity + " wetness per air";
